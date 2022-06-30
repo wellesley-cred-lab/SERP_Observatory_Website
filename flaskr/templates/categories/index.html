@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width"> 
+        {% if title %}
+        <title>{{ title }} - SERP Observatory Website</title>
+        {% else %}
+        <title>Welcome to SERP Observatory Website</title>
+        {% endif %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1> Interactive Website for Google Search Results</h1>
+            <p>Below are the categories that we've collected SERPs. Click on the links to see the dates that we've collected SERP for and explore the queries. </p>
+                
+            <table>
+                <tr>
+                    <th>Query</th>
+                    <th>Link to All Dates</th> 
+                </tr>
+                {% for category in categories %}
+                <tr>
+                    <td>{{category}}</td>
+                    <td><a href="{{ url_for('dates.date')}}">{{category}}</a></td> 
+                </tr>
+                {% endfor %}
+                    
+            </table>
+    </body>
+</html>
