@@ -32,25 +32,24 @@ nav ul{
      overflow-y:scroll;
 }
 
-.relationships{
-    position: absolute;
-    left: -12px;
-    top: 185px;
-}
-
-.identities{
-    position: absolute;
-    left: -12px;
-    top: 555px;			
-
-
-}
-
 table, th, td {
-    border: 1px solid;
+    border: 1px solid #ddd;
     overflow:hidden;
     overflow-y:scroll;
+    padding: 4px;
   }
+
+th {
+    background-color: #04AA6D;
+    color: white;
+    padding: 5px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+
 
 
 a:link {

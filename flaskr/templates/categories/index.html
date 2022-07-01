@@ -22,7 +22,7 @@
                 {% for category in categories %}
                 <tr>
                     <td>{{category}}</td>
-                    <td><a href="{{ url_for('dates.date')}}">{{category}}</a></td> 
+                    <td><a href="{{ url_for('dates.date', category=category)}}">{{category}}</a></td> 
                 </tr>
                 {% endfor %}
                     
