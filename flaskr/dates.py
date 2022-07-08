@@ -9,7 +9,7 @@ bp = Blueprint('dates', __name__)
 
 @bp.route('/<category>')
 def date(category):
-    os.chdir(bp.root_path+f"/SERP_Collection/{category}")
+    os.chdir(bp.root_path+f"/static/SERP_Collection/{category}")
     dateFolders = os.listdir()
     datesList = []
     # Place the date folders in order (Most recent on top)
