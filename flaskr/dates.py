@@ -27,7 +27,7 @@ def date(category):
             logging.warning(date)
     logging.warning(category)
     logging.warning(dateFolders)
-    return render_template('dates/dateList.html', title='Home', dateFolders=dateFolders)   
+    return render_template('dates/dateList.html', title='Home', category=category, dateFolders=dateFolders)   
         
     #logging.warning(categories)
     

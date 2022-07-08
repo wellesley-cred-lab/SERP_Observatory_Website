@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width"> 
+        {% if title %}
+        <title>{{ title }} - SERP Observatory Website</title>
+        {% else %}
+        <title>Welcome to SERP Observatory Website</title>
+        {% endif %}
+        <script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.min.js') }}"></script>
+        <script>
+            $(document).ready(function(){
+                $(":checkbox").click(function(){
+                    $("nav.{{category}} li").hide();
+                    $("#filters :checkbox:checked").each(function(){
+                        $('.'+$(this).val()).show();
+                    })
+                })
+            })
+        </script>
+		<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <div class="centered">
+            <h1> Interactive Website for Google Search Results</h1>
+
+            <p>Below are SERP pages for all queries from the category {{category}} collected on {{date}}. You can start exploring Google search results for each category of queries by scrolling through the links underneathe each title. </p>
+            
+            
+            
+            <h1 style="position:absolute;left:4px;top:160px;font-size:162%">{{category}} </h1> 
+                <nav class = "{{category}}" style="position: absolute; left: -12px;top: 195px;">
+                    <ul style="height:500px; width: 170px; overflow:hidden; overflow-y:scroll;">
+                    {% for dictionary in components %}
+                        {% if dictionary in querylist %}
+                        
+                        <li class="{{' '.join(components[dictionary])}}"><a id="{{ dictionary }}" data-src="{{ url_for('static', filename='SERP_Collection/'+category+'/'+date+'/'+dictionary+'.html') }}">{{dictionary}}</a></li> 
+                        
+                        {% endif %}   
+                    {% endfor %}
+                    </ul>
+                </nav>
+
+        </div>
+
+        <ul id="filters" style="padding-left:0px">
+            <li style="display:inline"><input type="checkbox" value="hotline" id="filter-hotline" >  <label for="filter-hotline">hotline</label></li>
+            <li style="display:inline"><input type="checkbox" value="peoplealsoask" id="filter-peoplealsoask" >  <label for="filter-peoplealsoask">people also ask</label></li>
+            <li style="display:inline"><input type="checkbox" value="bottomads" id="filter-bottomads" >  <label for="filter-bottomads">bottom ads</label></li>
+            <li style="display:inline"><input type="checkbox" value="featuredsnippet" id="filter-featuredsnippet" >  <label for="filter-featuredsnippet">featured snippet</label></li>
+            <li style="display:inline"><input type="checkbox" value="dictionary" id="filter-dictionary" >  <label for="filter-dictionary">dictionary</label></li>
+            <li style="display:inline"><input type="checkbox" value="googlescholar" id="filter-googlescholar" >  <label for="filter-googlescholar">google scholar</label></li>
+            <li style="display:inline"><input type="checkbox" value="images" id="filter-images" >  <label for="filter-images">images</label></li>
+            <li style="display:inline"><input type="checkbox" value="knowledgepanel" id="filter-knowledgepanel" >  <label for="filter-knowledgepanel">knowledge panel</label></li>
+            <li style="display:inline"><input type="checkbox" value="map" id="filter-map" >  <label for="filter-map">map</label></li>
+            <li style="display:inline"><input type="checkbox" value="seeresultsabout" id="filter-seeresultsabout" >  <label for="filter-seeresultsabout">see results about</label></li>
+            <li style="display:inline"><input type="checkbox" value="topads" id="filter-topads" >  <label for="filter-topads">top ads</label></li>
+            <li style="display:inline"><input type="checkbox" value="topstories" id="filter-topstories" >  <label for="filter-topstories">top stories</label></li>
+            <li style="display:inline"><input type="checkbox" value="twitterresults" id="filter-twitterresults" >  <label for="filter-twitterresults">twitter results</label></li>
+            <li style="display:inline"><input type="checkbox" value="videos" id="filter-videos" >  <label for="filter-videos">videos</label></li>
+            
+        </ul>
+
+        <iframe id='frame' scrolling="yes" width="83%" height="600"></iframe>
+        
+        <script> 
+            function iframeChange() {
+                var links = document.querySelector(".centered"),
+                    iframe = document.getElementById('frame');
+
+                $(document).ready(function(){
+                    iframe.align = "right";
+                })
+
+                links.addEventListener("click", function (e) {
+                    iframe.src = e.target.dataset.src;
+                    iframe.width = "83%";
+                    //iframe.height = "100%";
+                    //iframe.align = "right";
+                    var filePath = e.target.dataset.src;		      
+
+                });
+
+
+            }
+            window.onload = iframeChange;
+
+        </script>
+    <!-- <body>
+            <p>{{date}} </p>
+            <p>{{category}} </p>
+            <p>{{querylist}} </p>
+            <p>{{components}} </p>
+    </body> -->
+</html>

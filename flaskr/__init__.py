@@ -19,6 +19,8 @@ def create_app(test_config=None):
 
     from . import dates
     app.register_blueprint(dates.bp)
-    app.add_url_rule('/6-8-22', endpoint='date')
+
+    from . import serps
+    app.register_blueprint(serps.bp)
 
     return app

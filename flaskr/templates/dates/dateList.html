@@ -24,7 +24,7 @@
                     {% for folder in dateFolders %}
                     <tr>
                         <td>{{folder}}</td>
-                        <td><a href="html/SERP_{{folder}}.html">{{folder}}</a></td> 
+                        <td><a href="{{ url_for('serps.serps', category=category, date=folder)}}">{{folder}}</a></td> 
                         <td><a href="ranked-html/rank_{{folder}}.html">Changes</a></td>
                     </tr>
                     {% endfor %}
