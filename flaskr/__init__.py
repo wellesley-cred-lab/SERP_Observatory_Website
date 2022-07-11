@@ -32,4 +32,7 @@ def create_app(test_config=None):
     from . import db
     #db.init_app(app)
 
+    from . import rankchanges
+    app.register_blueprint(rankchanges.bp)
+
     return app

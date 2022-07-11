@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{folder}}</td>
                         <td><a href="{{ url_for('serps.serps', category=category, date=folder)}}">{{folder}}</a></td> 
-                        <td><a href="ranked-html/rank_{{folder}}.html">Changes</a></td>
+                        <td><a href="{{ url_for('rankchanges.rankchanges', category=category, date=folder)}}">Changes</a></td>
                     </tr>
                     {% endfor %}
                     

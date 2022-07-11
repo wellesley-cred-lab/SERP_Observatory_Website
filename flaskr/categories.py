@@ -32,4 +32,5 @@ def testdb():
         # store all the fetched data in the ans variable
         ans = crsr.fetchall()
         logging.warning(ans)
+        
         return '<h1>It works.</h1>'
